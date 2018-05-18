@@ -9,10 +9,10 @@
 #---------------------------------#
 
 # version format
-version: 1.0.4.{build}
+version: 1.0.5.{build}
 
 # you can use {branch} name in version format too
-# version: 1.0.4.{build}-{branch}
+# version: 1.0.5.{build}-{branch}
 
 # branches to build
 branches:
@@ -56,18 +56,8 @@ nuget:
 # build platform, i.e. x86, x64, Any CPU. This setting is optional.
 platform: Any CPU
 
-# to add several platforms to build matrix:
-#platform:
-#  - x86
-#  - Any CPU
-
 # build Configuration, i.e. Debug, Release, etc.
 configuration: Release
-
-# to add several configurations to build matrix:
-#configuration:
-#  - Debug
-#  - Release
 
 build:
   parallel: true                  # enable MSBuild parallel builds
@@ -103,6 +93,8 @@ deploy:
 
     # Deploy to GitHub Releases
   - provider: GitHub
+    tag: v$(appveyor_build_version) 
+    #description: #
     artifact: /.*\.nupkg/           # upload all NuGet packages to release assets
     draft: false
     auth_token:

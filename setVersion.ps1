@@ -1,5 +1,5 @@
 # Updates all projects with given version number
-param([String]$targetVersion)
+param([String]$targetVersion, [String]$releaseNotes)
 
 function IncreaseVersion(){
 	param(
@@ -34,6 +34,8 @@ function Update-CsProj($csprojPath){
 	$xml.SelectSingleNode("//AssemblyVersion").InnerText = $global:targetVersion
 	$xml.SelectSingleNode("//FileVersion").InnerText = $global:targetVersion
 	$xml.SelectSingleNode("//Version").InnerText = $global:targetVersion
+
+	$xml.SelectSingleNode("//PackageReleaseNotes").InnerText = $global:releaseNotes
 	
 	$xml.Save($csprojPath)
 }
@@ -45,5 +47,8 @@ foreach($csproj in $csProjs){
 }
 
 (Get-Content "$PWD\appveyor.yml") -replace 'version: (.*)\.\{build\}', ('version: '+$targetVersion+'.{build}') | Out-File "$PWD\appveyor.yml" -Encoding utf8
+
+$desc = if(!$releasenotes) { '#description: #' } else { 'description: '+$releaseNotes+'#' };
+(Get-Content "$PWD\appveyor.yml") -replace '(#)?description: (.*)#', ($desc) | Out-File "$PWD\appveyor.yml" -Encoding utf8
 
 Write-Host "Updating versions to $targetVersion done." -ForegroundColor Green
