@@ -76,6 +76,7 @@ build:
 
 before_build:
   - ps: C:\projects\testrepo\setVersion.ps1
+  - nuget restore
 
 #---------------------------------#
 #      artifacts configuration    #
