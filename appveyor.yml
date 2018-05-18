@@ -71,7 +71,7 @@ configuration: Release
 
 build:
   parallel: true                  # enable MSBuild parallel builds
-  publish_nuget: true             # package projects with .nuspec files and push to artifacts
+#  publish_nuget: true             # package projects with .nuspec files and push to artifacts
   verbosity: normal               # MSBuild verbosity level
 
 before_build:
