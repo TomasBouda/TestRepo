@@ -75,7 +75,7 @@ build:
   verbosity: normal               # MSBuild verbosity level
 
 before_build:
-  - C:\projects\testrepo\setVersion.ps1
+  - ps: C:\projects\testrepo\setVersion.ps1
 
 #---------------------------------#
 #      artifacts configuration    #
