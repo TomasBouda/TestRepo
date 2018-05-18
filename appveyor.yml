@@ -75,7 +75,7 @@ build:
   verbosity: normal               # MSBuild verbosity level
 
 before_build:
-  - ps: C:\projects\testrepo\setVersion.ps1
+  #- ps: C:\projects\testrepo\setVersion.ps1
   - nuget restore
 
 #---------------------------------#
@@ -98,13 +98,15 @@ deploy:
     # Deploying to NuGet feed
   - provider: NuGet
     api_key:
-      secure: IxlR/+bZG214/Em4LMd5QyQ87wCQNsYbIZoSgIRhBA0xZtYnMeTP0WeKsoFd+i4i
+      secure: anCjF+lZFQjFpLHy0hhPw+kyRb+2AnnqR/YUiLwC+Ic6SNArDDFQfoscxRi1bvf0  #test
     skip_symbols: false
 
     # Deploy to GitHub Releases
   - provider: GitHub
     artifact: /.*\.nupkg/           # upload all NuGet packages to release assets
     draft: false
+    auth_token:
+      secure: XXtDUCV7OIPzOUF7SPHY60J9slDW2SjXZ+Lxj7ctfEvSJKno6eeqpU7b2LJ7Esoh
     prerelease: false
     on:
       branch: master                # release from master branch only
