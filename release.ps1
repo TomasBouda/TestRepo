@@ -59,6 +59,6 @@ git add -A
 git commit -m "Released v$targetVersion"
 git tag "v$targetVersion"
 git push origin "v$targetVersion"
-git push
+git push origin
 
 Write-Host "Updating versions to $targetVersion done." -ForegroundColor Green
