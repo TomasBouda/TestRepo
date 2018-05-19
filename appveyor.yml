@@ -3,7 +3,7 @@
 #---------------------------------#
 
 # version format
-version: 1.0.13.{build}
+version: 1.0.14.{build}
 
 # branches to build
 branches:
@@ -88,8 +88,8 @@ deploy:
 
     # Deploy to GitHub Releases
   - provider: GitHub
-    tag: v1.0.13#
-    description: Test releasenotes#
+    release: v1.0.13 #
+    #description: #
     artifact: /.*\.nupkg/           # upload all NuGet packages to release assets
     draft: false
     auth_token:
