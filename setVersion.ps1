@@ -1,6 +1,8 @@
 # Updates all projects with given version number
 param([String]$targetVersion, [String]$releaseNotes)
 
+# FUNCTIONS
+
 function IncreaseVersion(){
 	param(
 		[Parameter(
@@ -18,8 +20,6 @@ function IncreaseVersion(){
 
 	return $version -replace $pattern, ('$1.$2.' + $build)
 }
-
-$EXCLUDED_CSPROJS = ""
 
 function Update-CsProj($csprojPath){
 	Write-Host "Updating $csprojPath" -ForegroundColor Green
@@ -40,7 +40,9 @@ function Update-CsProj($csprojPath){
 	$xml.Save($csprojPath)
 }
 
-$csProjs = Get-ChildItem $PWD -Recurse -Include *.csproj -Exclude $EXCLUDED_CSPROJS
+#END FUNCTIONS
+
+$csProjs = Get-ChildItem $PWD -Recurse -Include *.csproj
 
 foreach($csproj in $csProjs){
 	Update-CsProj($csproj)
@@ -50,5 +52,7 @@ foreach($csproj in $csProjs){
 
 $desc = if(!$releasenotes) { '#description: #' } else { 'description: '+$releaseNotes+'#' };
 (Get-Content "$PWD\appveyor.yml") -replace '(#)?description: (.*)#', ($desc) | Out-File "$PWD\appveyor.yml" -Encoding utf8
+
+(Get-Content "$PWD\appveyor.yml") -replace 'tag: (.*)#', ('tag: v'+$targetVersion+'#') | Out-File "$PWD\appveyor.yml" -Encoding utf8
 
 Write-Host "Updating versions to $targetVersion done." -ForegroundColor Green
