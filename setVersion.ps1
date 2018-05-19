@@ -57,6 +57,7 @@ $desc = if(!$releasenotes) { '#description: #' } else { 'description: '+$release
 
 git add -A
 git commit -m "Released v$targetVersion"
+git tag "v$targetVersion"
 git push
 
 Write-Host "Updating versions to $targetVersion done." -ForegroundColor Green
