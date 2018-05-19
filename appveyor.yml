@@ -3,7 +3,7 @@
 #---------------------------------#
 
 # version format
-version: 1.0.19.{build}
+version: 1.0.20.{build}
 
 # branches to build
 branches:
@@ -88,7 +88,7 @@ deploy:
 
     # Deploy to GitHub Releases
   - provider: GitHub
-    release: v1.0.13 #
+    release: v1.0.20 #
     #description:  #
     artifact: /.*\.nupkg/           # upload all NuGet packages to release assets
     draft: false
