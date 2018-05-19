@@ -50,14 +50,15 @@ foreach($csproj in $csProjs){
 
 (Get-Content "$PWD\appveyor.yml") -replace 'version: (.*)\.\{build\}', ('version: '+$targetVersion+'.{build}') | Out-File "$PWD\appveyor.yml" -Encoding utf8
 
-$desc = if(!$releasenotes) { '#description: #' } else { 'description: '+$releaseNotes+'#' };
-(Get-Content "$PWD\appveyor.yml") -replace '(#)?description: (.*)#', ($desc) | Out-File "$PWD\appveyor.yml" -Encoding utf8
+$desc = if(!$releasenotes) { '#description:  #' } else { 'description: '+$releaseNotes+' #' };
+(Get-Content "$PWD\appveyor.yml") -replace '(#)?description: (.*) #', ($desc) | Out-File "$PWD\appveyor.yml" -Encoding utf8
 
 (Get-Content "$PWD\appveyor.yml") -replace 'tag: (.*) #', ('tag: v'+$targetVersion+' #') | Out-File "$PWD\appveyor.yml" -Encoding utf8
 
 git add -A
 git commit -m "Released v$targetVersion"
 git tag "v$targetVersion"
+git push origin "v$targetVersion"
 git push
 
 Write-Host "Updating versions to $targetVersion done." -ForegroundColor Green

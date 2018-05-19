@@ -7,10 +7,9 @@
     <PackageProjectUrl>https://github.com/TomasBouda/TestRepo</PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>test, repo</PackageTags>
-    <Version>1.0.15</Version>
-    <AssemblyVersion>1.0.15</AssemblyVersion>
-    <FileVersion>1.0.15</FileVersion>
-    <PackageReleaseNotes>
-    </PackageReleaseNotes>
+    <Version>1.0.16</Version>
+    <AssemblyVersion>1.0.16</AssemblyVersion>
+    <FileVersion>1.0.16</FileVersion>
+    <PackageReleaseNotes>Some release info</PackageReleaseNotes>
   </PropertyGroup>
 </Project>
